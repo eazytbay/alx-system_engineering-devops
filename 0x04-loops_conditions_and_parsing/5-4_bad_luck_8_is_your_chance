@@ -5,14 +5,17 @@
 # And then "good luck" for the 8th loop iteration
 # And for other iterations, it displays "Best School"
 
-count=1
-while [ "$count" -le 10 ]; do
-    if [ $count -eq 4 ]; then
-	echo "bad luck"
-    elif [ $count -eq 8 ]; then
-	echo "good luck"
-    else
-	echo "Best School"
-    fi
-    let count++
+count=0
+while ((count < 10))
+do
+	if ((count == 3))
+	then
+		echo "bad luck"
+	elif ((count == 7))
+	then
+		echo "good luck"
+	else
+		echo "Best School"
+	fi
+	((count++))
 done

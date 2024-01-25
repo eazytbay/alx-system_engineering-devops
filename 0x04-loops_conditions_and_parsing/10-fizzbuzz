@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Here is what this script does
+# It prints numbers from 1 - 100
+# It Displays FizzBuzz when the number is a multiple of 3 and 5
+# It Displays Fizz when the number is multiple of 3
+# It Displays Buzz when the number is a multiple of 5
+# Otherwise, it displays the numbers in a list format
+
+num="1"
+while [ "$num" -le 100 ]; do
+	scen1=$((num % 3))
+	scen2=$((num % 5))
+	scen3=$((num % 15))
+	if [ "$scen3" -eq 0 ]; then
+		echo "FizzBuzz"
+	elif [ "$scen1" -eq 0 ]; then
+			echo "Fizz"
+	elif [ "$scen2" -eq 0 ]; then
+		echo "Buzz"
+	else
+		echo "$num"
+	fi
+	((num++))
+done

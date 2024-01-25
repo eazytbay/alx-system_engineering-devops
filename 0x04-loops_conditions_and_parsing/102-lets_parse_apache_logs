@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Here is what this script does
+# It dispalys the list of ip from apache access log using awk
+
+awk '{print $1 " " $9}' < apache-access.log

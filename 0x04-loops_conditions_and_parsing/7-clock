@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Here is what this bash script does
+# It display hours from 0 to 12
+# It displays minutes from 1 to 59
+# Usage: While loop
+
+count1="0"
+while [ "$count1" -lt 13 ];do
+	echo "Hour: $count1"
+	count2="1"
+	while [ "$count2" -lt 60 ];do
+		echo "$count2"
+		((count2++))
+	done
+	((count1++))
+done

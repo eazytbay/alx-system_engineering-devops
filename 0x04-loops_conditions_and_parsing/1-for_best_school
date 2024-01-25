@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This is a  script that displaying "Best School" 10 times in a new line
+
+for _ in $(seq 1 10);
+do
+	echo "Best School"
+done

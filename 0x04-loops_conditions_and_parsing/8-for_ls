@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Here is what this cript does
+# It displays the content of the current directory in a list format
+# Where only the part of the name after the first dash is displayed
+
+disp_list=$(ls)
+for x in $disp_list;do
+	echo "$x" | cut -d '-' -f2
+done

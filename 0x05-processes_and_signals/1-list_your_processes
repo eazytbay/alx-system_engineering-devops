@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Here is what this script does
+# It displays displays a list of processes that's currently running in a
+# format that's user oriented
+
+ps -faux

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Here is what this script does
+# It stops the previously written infinite script "4-to_infinity_and_beyond"
+# Without using the gctrl + c"
+
+kill "$(pgrep "4-to_infinity_and_beyond")"

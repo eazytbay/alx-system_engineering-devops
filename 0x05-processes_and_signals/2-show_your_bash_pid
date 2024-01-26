@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Here is what this cript does
+# It displays lines that contains the bash word
+# shellcheck disable=SC2009
+
+ps -faux | grep "bash"

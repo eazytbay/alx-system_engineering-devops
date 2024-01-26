@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Here is what this cript does
+# It displays To infinity and beyond indefinitely.
+# It then adds "sleep 2" in between each iteration of the loop
+
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
+done
+

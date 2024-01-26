@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Here is what this scripts does
+# It kills a previously written script "7-highlander".
+
+kill -9 "$(pgrep -f 7-highlander)"

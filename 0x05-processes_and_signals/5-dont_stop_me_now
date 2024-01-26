@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 # Here is what this script does
 # It stops the previously written infinite script "4-to_infinity_and_beyond"
-# Without using the gctrl + c"
+# Without using the ctrl + c"
 
-kill "$(pgrep "4-to_infinity_and_beyond")"
+pids=$(pgrep -f "4-to_infinity_and_beyond")
+
+if [ -n "$pids" ]; then
+  # Terminate each process individually
+  for pid in $pids; do
+    kill "$pid"
+  done
+fi

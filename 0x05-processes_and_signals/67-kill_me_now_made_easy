@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Here is what this scripts does
+#  It stops the  7-highlander.
+
+pkill -f 7-highlander

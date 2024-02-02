@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This is what this script does
+# It displays all active ip
+ifconfig | grep "inet addr" | cut -f2 -d " " | cut -f1 -d ":"

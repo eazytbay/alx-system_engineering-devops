@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
-# This script runs the installation of NGINX
+# Configuring a new ubuntu machine by installing
+# Nginx where it should be listening on port 80
+# Serve a page that would return a Hello World string
+sudo apt-get  update -y
+sudo apt-get install nginx -y
 
-sudo apt-get -y update
-sudo apt-get install -y nginx
-sudo echo "Hello World!" > /var/www/html/index.html
+# allowing nginx on firewall
+ufw allow 'Nginx HTTP'
+
+# establishing new index
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+
+# nginx starting...
 sudo service nginx start

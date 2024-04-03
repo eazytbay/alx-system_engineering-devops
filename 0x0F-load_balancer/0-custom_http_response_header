@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This is a Bash script used to configure nginx on second server and add header
+sudo apt update -y
+sudo apt install -y nginx
+sudo echo "Hello World!" > /var/www/html/index.html
+sudo sed -i '/http {/ a \    add_header X-Served-By $hostname;' /etc/nginx/nginx.conf
+sudo service nginx restart

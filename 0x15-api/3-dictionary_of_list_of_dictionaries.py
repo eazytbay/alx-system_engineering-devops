@@ -1,33 +1,34 @@
 #!/usr/bin/python3
 """
-This scirpt usesUsing https://jsonplaceholder.typicode.com
-gathers data from API and exports it to JSON file
+This scirpt uses https://jsonplaceholder.typicode.com
+and gathers data from API and exports it to JSON file
 Implemented using recursion
 """
 import json
 import requests
-
-
-API = "https://jsonplaceholder.typicode.com"
-"""REST API url"""
+import sys
 
 
 if __name__ == '__main__':
-    res_users = requests.get('{}/users'.format(API)).json()
-    res_todos = requests.get('{}/todos'.format(API)).json()
-    users_data = {}
-    for user in users_res:
-        id = user.get('id')
-        user_name = user.get('username')
-        pend = list(filter(lambda x: x.get('userId') == id, res_todos))
-        user_data = list(map(
-            lambda x: {
-                'username': user_name,
-                'task': x.get('title'),
-                'completed': x.get('completed')
-            },
-            pends
-        ))
-        users_data['{}'.format(id)] = user_data
+    url = "https://jsonplaceholder.typicode.com/users"
+
+    resp = requests.get(url)
+    users = response.json()
+
+    dictionary = {}
+    for user in users:
+        user_id = user.get('id')
+        username = user.get('username')
+        url = 'https://jsonplaceholder.typicode.com/users/{}'.format(user_id)
+        url = url + '/todos/'
+        resp = requests.get(url)
+        tsks = resp.json()
+        dictionary[user_id] = []
+        for tsk in tsks:
+            dictionary[user_id].append({
+                "task": tsk.get('title'),
+                "completed": tsk.get('completed'),
+                "username": username
+            })
     with open('todo_all_employees.json', 'w') as file:
-        json.dump(users_data, file)
+        json.dump(dictionary, file)

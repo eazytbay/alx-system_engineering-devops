@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Function to query subscribers on a given Reddit subreddit."""
 import requests
-import json
 
 def number_of_subscribers(subreddit):
     """returns the number of subscribers for a given subreddit"""

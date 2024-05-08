@@ -1,22 +1,28 @@
 #!/usr/bin/python3
 """This is a function that prints hot posts on a given Reddit subreddit."""
-import json
 import requests
 def top_ten(subreddit):
-    """
-    returns a valid list of 10 hot titles of the subreddit
-    passed as argument. If not a valid subreddit will print
-    None
-    """
+    """Print the titles of the 10 hottest posts on a given subreddit."""
+    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+    }
+    params = {
+        "limit": 10
+    }
+    try:
+        response = requests.get(url, headers=headers, params=params, allow_redirects=False)
+        response.raise_for_status()  # Raise an exception for unexpected status codes
+        results = response.json().get("data")
+        if results:
+            [print(c.get("data").get("title")) for c in results.get("children")]
+        else:
+            print("No posts found.")
+    except requests.exceptions.HTTPError as e:
+        if response.status_code == 403:
+            print("Error: You may not have permission to access this subreddit.")
+        else:
+            print("HTTP Error:", e)
+    except requests.exceptions.RequestException as e:
+        print("Error fetching data:", e)
 
-    url = "https://www.reddit.com/r/{}/hot.json?limit=10".format(subreddit)
-    header = {"User-Agent": "Mozilla/5.0"}
-    resp = requests.get(url, headers=header, allow_redirects=False)
-
-    if resp.status_code == 200:
-        children = resp.json().get("data").get("children")
-        titles = [child.get("data").get("title") for child in children]
-        output = "\n".join(titles)
-        print(output)
-    else:
-        print(None)

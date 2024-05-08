@@ -3,16 +3,20 @@
 import json
 import requests
 def top_ten(subreddit):
-    """prints the titles of the top ten hot posts for a given subreddit"""
-    if subreddit is None or type(subreddit) is not str:
-        print(None)
-    r = requests.get('http://www.reddit.com/r/{}/hot.json'.format(subreddit),
-                     headers={'User-Agent': 'Python/requests:APIproject:\
-                     v1.0.0 (by /u/aaorrico23)'},
-                     params={'limit': 10}).json()
-    posts = r.get('data', {}).get('children', None)
-    if posts is None or (len(posts) > 0 and posts[0].get('kind') != 't3'):
-        print(None)
+    """
+    returns a valid list of 10 hot titles of the subreddit
+    passed as argument. If not a valid subreddit will print
+    None
+    """
+
+    url = "https://www.reddit.com/r/{}/hot.json?limit=10".format(subreddit)
+    header = {"User-Agent": "Mozilla/5.0"}
+    resp = requests.get(url, headers=header, allow_redirects=False)
+
+    if resp.status_code == 200:
+        children = resp.json().get("data").get("children")
+        titles = [child.get("data").get("title") for child in children]
+        output = "\n".join(titles)
+        print(output)
     else:
-        for post in posts:
-            print(post.get('data', {}).get('title', None))
+        print(None)
